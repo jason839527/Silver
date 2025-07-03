@@ -30,4 +30,26 @@
     
   })(window.jQuery);
 
+(function ($) {
+  "use strict";
 
+  // 當 contact-form 被送出時
+  $('.contact-form').on('submit', function(e) {
+    e.preventDefault(); // 阻止真的送出
+
+    // 顯示「已傳送」提示
+    alert("已傳送，感謝您的寶貴建議！");
+
+    // 清空表單所有輸入
+    $(this).find('input[type="text"], input[type="email"], textarea').val('');
+
+    // 也可以選擇改變按鈕文字
+    $(this).find('button[type="submit"]').text('已傳送').prop('disabled', true);
+
+    // 幾秒後恢復
+    setTimeout(() => {
+      $(this).find('button[type="submit"]').text('傳送訊息').prop('disabled', false);
+    }, 3000);
+  });
+
+})(window.jQuery);
