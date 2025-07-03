@@ -33,7 +33,7 @@
 (function ($) {
   "use strict";
 
-  // 當 contact-form 被送出時
+  // 當傳送訊息 contact-form 被送出時
   $('.contact-form').on('submit', function(e) {
     e.preventDefault(); // 阻止真的送出
 
@@ -49,6 +49,41 @@
     // 幾秒後恢復
     setTimeout(() => {
       $(this).find('button[type="submit"]').text('傳送訊息').prop('disabled', false);
+    }, 3000);
+  });
+
+})(window.jQuery);
+
+(function ($) {
+  "use strict";
+
+  // 聯絡表格假的送出（前面那個）
+  $('.contact-form').on('submit', function(e) {
+    e.preventDefault();
+    alert("已傳送，感謝您的寶貴建議！");
+    $(this).find('input[type="text"], input[type="email"], textarea').val('');
+    $(this).find('button[type="submit"]').text('已傳送').prop('disabled', true);
+    setTimeout(() => {
+      $(this).find('button[type="submit"]').text('傳送訊息').prop('disabled', false);
+    }, 3000);
+  });
+
+  // 一日打工體驗表單假的送出
+  $('.volunteer-form').on('submit', function(e) {
+    e.preventDefault();
+    alert("已傳送，感謝您的報名！");
+    
+    // 清空輸入框
+    $(this).find('input[type="text"], input[type="email"], input[type="file"], textarea').val('');
+    
+    // 重設檔案上傳按鈕
+    $(this).find('input[type="file"]').val(null);
+
+    // 修改送出按鈕
+    $(this).find('button[type="submit"]').text('已傳送').prop('disabled', true);
+    
+    setTimeout(() => {
+      $(this).find('button[type="submit"]').text('送出').prop('disabled', false);
     }, 3000);
   });
 
